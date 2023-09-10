@@ -2,6 +2,12 @@
   "name": "firebase-deploy",
   "version": "0.1.0",
   "description": "A wrapper around `firebase deploy` to pre-answer prompts",
+  "keywords": [
+    "firebase",
+    "deploy",
+    "automation",
+    "CI/CD"
+  ],
   "main": "index.js",
   "type": "module",
   "bin": {
