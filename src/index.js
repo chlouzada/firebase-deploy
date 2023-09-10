@@ -29,22 +29,26 @@ program
     'Automatically deny retrying functions in case of failure'
   );
 
-program.parse();
+const options = program.allowUnknownOption(true).parse().opts();
 
-main(program.opts());
+main(
+  {
+    confirmOnDeletion: options.confirmOnDeletion,
+    confirmOnRetryFailure: options.confirmOnRetryFailure,
+  },
+  program.args
+);
 
 /**
  * @param {{
  *  confirmOnDeletion: boolean | undefined;
  *  confirmOnRetryFailure: boolean | undefined;
  * }} options
+ * @param {string[]} args
  * @returns {void}
  * */
-function main({ confirmOnDeletion, confirmOnRetryFailure }) {
-  const command = 'firebase';
-  const args = ['deploy', '--interactive'];
-
-  const child = spawn(command, args, {
+function main({ confirmOnDeletion, confirmOnRetryFailure }, args) {
+  const child = spawn('firebase', ['deploy', ...args, '--interactive'], {
     stdio: 'pipe',
   });
 
