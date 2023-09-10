@@ -7,7 +7,7 @@ import { spawn } from 'child_process';
 const program = new Command();
 
 program
-  .name('Firebase Deploy')
+  .name('firebase-deploy')
   .description('Wrapper for `firebase deploy` that allows preanswering prompts')
   .version('0.0.0');
 
