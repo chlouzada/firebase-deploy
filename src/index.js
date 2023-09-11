@@ -3,6 +3,7 @@
 
 import { Command } from 'commander';
 import { spawn } from 'child_process';
+import { logger } from './helpers/logger';
 
 const program = new Command();
 
@@ -31,12 +32,28 @@ program
 
 const options = program.allowUnknownOption(true).parse().opts();
 
+const args = (() => {
+  const result = program.args;
+
+  if (result.includes('--non-interactive')) {
+    logger.error(`--non-interactive is not supported.`);
+    process.exit(1);
+  }
+
+  if (result.includes("-f") || result.includes("--force")) {
+    logger.error(`-f/--force is not supported. Please use --confirm-on-deletion instead.`);
+    process.exit(1);
+  }
+
+  return result;
+})();
+
 main(
   {
     confirmOnDeletion: options.confirmOnDeletion,
     confirmOnRetryFailure: options.confirmOnRetryFailure,
   },
-  program.args
+  args
 );
 
 /**
@@ -67,12 +84,12 @@ function main({ confirmOnDeletion, confirmOnRetryFailure }, args) {
 
   child.stdout.on('data', (data) => {
     const output = data.toString();
-    console.log(output);
+    logger.log(output);
 
     prompts.forEach((prompt) => {
       if (output.includes(prompt.text)) {
         if (prompt.value === undefined) {
-          console.log(
+          logger.error(
             `Prompt '${
               prompt.text
             }' was found but no response was provided. Please provide either ${prompt.options.join(
@@ -87,10 +104,10 @@ function main({ confirmOnDeletion, confirmOnRetryFailure }, args) {
   });
 
   child.stderr.on('data', (data) => {
-    console.error(data.toString());
+    logger.error(data.toString());
   });
 
   child.on('close', (code) => {
-    console.log(`process exited with code ${code}`);
+    logger.log(`process exited with code ${code}`);
   });
 }
