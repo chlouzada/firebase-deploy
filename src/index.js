@@ -3,7 +3,12 @@
 
 import { Command } from 'commander';
 import { spawn } from 'child_process';
-import { logger } from './helpers/logger';
+
+const logger = {
+  log: (args) => console.log(args),
+  error: (args) => console.error(args),
+};
+
 
 const program = new Command();
 

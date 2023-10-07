@@ -1,6 +1,6 @@
 {
   "name": "firebase-deploy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A wrapper around `firebase deploy` to pre-answer prompts",
   "keywords": [
     "firebase",
