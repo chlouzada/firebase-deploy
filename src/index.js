@@ -15,7 +15,7 @@ const program = new Command();
 program
   .name('firebase-deploy')
   .description('Wrapper for `firebase deploy` that allows preanswering prompts')
-  .version('0.0.0');
+  .version('1.0.2');
 
 program
   .option(
