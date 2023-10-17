@@ -8,6 +8,10 @@
     "automation",
     "CI/CD"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chlouzada/firebase-deploy.git"
+  },
   "main": "index.js",
   "type": "module",
   "bin": {
