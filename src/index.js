@@ -114,5 +114,6 @@ function main({ confirmOnDeletion, confirmOnRetryFailure }, args) {
 
   child.on('close', (code) => {
     logger.log(`process exited with code ${code}`);
+    process.exit(code ?? 1);
   });
 }
