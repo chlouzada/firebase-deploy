@@ -20,10 +20,10 @@ firebase-deploy [options]
 
 | Option | Description |
 | --- | --- |
-| ` --confirm-on-deletion` | Confirm deletion of resources if not present on codebase | 
+| `--confirm-on-deletion` | Confirm deletion of resources if not present on codebase |
 | `--no-confirm-on-deletion` | Deny deletion of resources if not present on codebase |
 | `--confirm-on-retry-failure` | Confirm retrying functions in case of failure |
-| ` --no-confirm-on-retry-failure` | Deny retrying functions in case of failure |
+| `--no-confirm-on-retry-failure` | Deny retrying functions in case of failure |
 
 ### Firebase Deploy Options
 
